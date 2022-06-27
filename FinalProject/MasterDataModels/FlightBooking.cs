@@ -12,7 +12,7 @@ namespace FinalProject.MasterDataModels
         public int Id { get; set; }
         [Unicode(false)]
         public string PassengerNameRecord { get; set; }
-        public int BookingTimeStamp { get; set; }
+        public DateTime BookingTimeStamp { get; set; }
         public int CustomerRefId { get; set; }
         [ForeignKey(nameof(CustomerRefId))]
         public Customer Customer { get; set; }

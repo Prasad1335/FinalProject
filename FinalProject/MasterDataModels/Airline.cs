@@ -22,7 +22,7 @@ namespace FinalProject.MasterDataModels
         public string AirlineAddress { get; set; }
         public int CityRefId { get; set; }
         [ForeignKey(nameof(CityRefId))]
-        public City CityModel { get; set; }
+        public City City { get; set; }
         [Unicode(false)]
         public string AirlinePinCode { get; set; }
         public long AirlineTelephone1 { get; set; }

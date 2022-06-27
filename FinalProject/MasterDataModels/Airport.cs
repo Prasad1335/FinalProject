@@ -14,10 +14,12 @@ namespace FinalProject.MasterDataModels
         public string AirportCode { get; set; }
         [Unicode(false)]
         public string AirportName { get; set; }
+        [Unicode(false)]
+        public string AirportAddress { get; set; }
         public int CityRefId { get; set; }
         [ForeignKey(nameof(CityRefId))]
 
-        public City CityModel { get; set; }
+        public City City { get; set; }
         [Unicode(false)]
         public string AirportPinCode { get; set; }
         public long AirportTelephone1 { get; set; }

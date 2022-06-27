@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalProject", "FinalProject\FinalProject.csproj", "{69AE6227-D225-442D-8E6D-5176EF6766DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumeraTravelCorporationWebsite", "SumeraTravelCorporationWebsite\SumeraTravelCorporationWebsite.csproj", "{146113C4-8AAE-4125-AE10-47AAE91D1B8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinalProject", "FinalProject\FinalProject.csproj", "{69AE6227-D225-442D-8E6D-5176EF6766DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{69AE6227-D225-442D-8E6D-5176EF6766DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69AE6227-D225-442D-8E6D-5176EF6766DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69AE6227-D225-442D-8E6D-5176EF6766DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{146113C4-8AAE-4125-AE10-47AAE91D1B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{146113C4-8AAE-4125-AE10-47AAE91D1B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{146113C4-8AAE-4125-AE10-47AAE91D1B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{146113C4-8AAE-4125-AE10-47AAE91D1B8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

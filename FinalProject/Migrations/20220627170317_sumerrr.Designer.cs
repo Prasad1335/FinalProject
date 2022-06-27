@@ -4,6 +4,7 @@ using FinalProject.MasterDataModels.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220627170317_sumerrr")]
+    partial class sumerrr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,6 +256,9 @@ namespace FinalProject.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FlightRefId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PricePerAdult")
                         .HasColumnType("int");
 
                     b.HasKey("FlightScheduleId");

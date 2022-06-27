@@ -14,16 +14,13 @@ namespace FinalProject.MasterDataModels
         public int AirlineRefId { get; set; }
         [ForeignKey(nameof(AirlineRefId))]
 
-        public Airline AirlineModel { get; set; }
+        public Airline Airline { get; set; }
         public int FromAirportRefId { get; set; }
         [ForeignKey(nameof(FromAirportRefId))]
-        public Airport AirportModelFrom { get; set; }
+        public Airport AirportFrom { get; set; }
         public int ToAirportRefId { get; set; }
         [ForeignKey(nameof(ToAirportRefId))]
-        public Airport AirportModelTo { get; set; }
-        [Unicode(false)]
-        public string Address { get; set; }
-
+        public Airport AirportTo { get; set; }
     }
 }
 

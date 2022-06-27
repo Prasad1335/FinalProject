@@ -14,9 +14,9 @@ namespace FinalProject.MasterDataModels
         [ForeignKey(nameof(HotelRefId))]
         public Hotel HotelModel { get; set; }
 
-        public int CityRefId { get; set; }
-        [ForeignKey(nameof(CityRefId))]
-        public City CityModel { get; set; }
+        public int AmenitiesRefId { get; set; }
+        [ForeignKey(nameof(AmenitiesRefId))]
+        public Amenities Amenities { get; set; }
 
     }
 }

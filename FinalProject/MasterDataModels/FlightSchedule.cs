@@ -17,6 +17,6 @@ namespace FinalProject.MasterDataModels
 
         public DateTime ArrivalDateTime { get; set; }
 
-        public int PricePerAdult { get; set; }
+       
     }
 }

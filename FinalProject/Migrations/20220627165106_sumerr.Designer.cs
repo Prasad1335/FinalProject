@@ -4,6 +4,7 @@ using FinalProject.MasterDataModels.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220627165106_sumerr")]
+    partial class sumerr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,6 +156,10 @@ namespace FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlightId"), 1L, 1);
 
+                    b.Property<string>("Address")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
                     b.Property<int>("AirlineRefId")
                         .HasColumnType("int");
 
@@ -254,6 +260,9 @@ namespace FinalProject.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FlightRefId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PricePerAdult")
                         .HasColumnType("int");
 
                     b.HasKey("FlightScheduleId");
@@ -486,29 +495,29 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.MasterDataModels.Flight", b =>
                 {
-                    b.HasOne("FinalProject.MasterDataModels.Airline", "Airline")
+                    b.HasOne("FinalProject.MasterDataModels.Airline", "AirlineModel")
                         .WithMany()
                         .HasForeignKey("AirlineRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinalProject.MasterDataModels.Airport", "AirportFrom")
+                    b.HasOne("FinalProject.MasterDataModels.Airport", "AirportModelFrom")
                         .WithMany()
                         .HasForeignKey("FromAirportRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinalProject.MasterDataModels.Airport", "AirportTo")
+                    b.HasOne("FinalProject.MasterDataModels.Airport", "AirportModelTo")
                         .WithMany()
                         .HasForeignKey("ToAirportRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Airline");
+                    b.Navigation("AirlineModel");
 
-                    b.Navigation("AirportFrom");
+                    b.Navigation("AirportModelFrom");
 
-                    b.Navigation("AirportTo");
+                    b.Navigation("AirportModelTo");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.FlightBooking", b =>
@@ -625,13 +634,13 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.Models.Customer", b =>
                 {
-                    b.HasOne("FinalProject.Models.City", "City")
+                    b.HasOne("FinalProject.Models.City", "CityModel")
                         .WithMany()
                         .HasForeignKey("CityRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("City");
+                    b.Navigation("CityModel");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.FlightBooking", b =>
