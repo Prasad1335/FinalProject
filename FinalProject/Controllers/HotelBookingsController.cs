@@ -12,47 +12,47 @@ namespace FinalProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CountriesController : ControllerBase
+    public class HotelBookingsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public CountriesController(ApplicationDbContext context)
+        public HotelBookingsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Countries
+        // GET: api/HotelBookings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
+        public async Task<ActionResult<IEnumerable<HotelBooking>>> GetHotelBookings()
         {
-            return await _context.Countries.ToListAsync();
+            return await _context.HotelBookings.ToListAsync();
         }
 
-        // GET: api/Countries/5
+        // GET: api/HotelBookings/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetCountry(int id)
+        public async Task<ActionResult<HotelBooking>> GetHotelBooking(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
+            var hotelBooking = await _context.HotelBookings.FindAsync(id);
 
-            if (country == null)
+            if (hotelBooking == null)
             {
                 return NotFound();
             }
 
-            return country;
+            return hotelBooking;
         }
 
-        // PUT: api/Countries/5
+        // PUT: api/HotelBookings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCountry(int id, Country country)
+        public async Task<IActionResult> PutHotelBooking(int id, HotelBooking hotelBooking)
         {
-            if (id != country.CountryId)
+            if (id != hotelBooking.HotelBookingId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(country).State = EntityState.Modified;
+            _context.Entry(hotelBooking).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace FinalProject.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CountryExists(id))
+                if (!HotelBookingExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace FinalProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Countries
+        // POST: api/HotelBookings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Country>> PostCountry(Country country)
+        public async Task<ActionResult<HotelBooking>> PostHotelBooking(HotelBooking hotelBooking)
         {
-            _context.Countries.Add(country);
+            _context.HotelBookings.Add(hotelBooking);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCountry", new { id = country.CountryId }, country);
+            return CreatedAtAction("GetHotelBooking", new { id = hotelBooking.HotelBookingId }, hotelBooking);
         }
 
-        // DELETE: api/Countries/5
+        // DELETE: api/HotelBookings/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCountry(int id)
+        public async Task<IActionResult> DeleteHotelBooking(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
-            if (country == null)
+            var hotelBooking = await _context.HotelBookings.FindAsync(id);
+            if (hotelBooking == null)
             {
                 return NotFound();
             }
 
-            _context.Countries.Remove(country);
+            _context.HotelBookings.Remove(hotelBooking);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CountryExists(int id)
+        private bool HotelBookingExists(int id)
         {
-            return _context.Countries.Any(e => e.CountryId == id);
+            return _context.HotelBookings.Any(e => e.HotelBookingId == id);
         }
     }
 }

@@ -12,47 +12,47 @@ namespace FinalProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CountriesController : ControllerBase
+    public class FlightBookingsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public CountriesController(ApplicationDbContext context)
+        public FlightBookingsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Countries
+        // GET: api/FlightBookings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
+        public async Task<ActionResult<IEnumerable<FlightBooking>>> GetFlightBookings()
         {
-            return await _context.Countries.ToListAsync();
+            return await _context.FlightBookings.ToListAsync();
         }
 
-        // GET: api/Countries/5
+        // GET: api/FlightBookings/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetCountry(int id)
+        public async Task<ActionResult<FlightBooking>> GetFlightBooking(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
+            var flightBooking = await _context.FlightBookings.FindAsync(id);
 
-            if (country == null)
+            if (flightBooking == null)
             {
                 return NotFound();
             }
 
-            return country;
+            return flightBooking;
         }
 
-        // PUT: api/Countries/5
+        // PUT: api/FlightBookings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCountry(int id, Country country)
+        public async Task<IActionResult> PutFlightBooking(int id, FlightBooking flightBooking)
         {
-            if (id != country.CountryId)
+            if (id != flightBooking.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(country).State = EntityState.Modified;
+            _context.Entry(flightBooking).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace FinalProject.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CountryExists(id))
+                if (!FlightBookingExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace FinalProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Countries
+        // POST: api/FlightBookings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Country>> PostCountry(Country country)
+        public async Task<ActionResult<FlightBooking>> PostFlightBooking(FlightBooking flightBooking)
         {
-            _context.Countries.Add(country);
+            _context.FlightBookings.Add(flightBooking);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCountry", new { id = country.CountryId }, country);
+            return CreatedAtAction("GetFlightBooking", new { id = flightBooking.Id }, flightBooking);
         }
 
-        // DELETE: api/Countries/5
+        // DELETE: api/FlightBookings/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCountry(int id)
+        public async Task<IActionResult> DeleteFlightBooking(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
-            if (country == null)
+            var flightBooking = await _context.FlightBookings.FindAsync(id);
+            if (flightBooking == null)
             {
                 return NotFound();
             }
 
-            _context.Countries.Remove(country);
+            _context.FlightBookings.Remove(flightBooking);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CountryExists(int id)
+        private bool FlightBookingExists(int id)
         {
-            return _context.Countries.Any(e => e.CountryId == id);
+            return _context.FlightBookings.Any(e => e.Id == id);
         }
     }
 }

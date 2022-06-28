@@ -12,47 +12,47 @@ namespace FinalProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CountriesController : ControllerBase
+    public class FlightsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public CountriesController(ApplicationDbContext context)
+        public FlightsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Countries
+        // GET: api/Flights
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
+        public async Task<ActionResult<IEnumerable<Flight>>> GetFlights()
         {
-            return await _context.Countries.ToListAsync();
+            return await _context.Flights.ToListAsync();
         }
 
-        // GET: api/Countries/5
+        // GET: api/Flights/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetCountry(int id)
+        public async Task<ActionResult<Flight>> GetFlight(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
+            var flight = await _context.Flights.FindAsync(id);
 
-            if (country == null)
+            if (flight == null)
             {
                 return NotFound();
             }
 
-            return country;
+            return flight;
         }
 
-        // PUT: api/Countries/5
+        // PUT: api/Flights/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCountry(int id, Country country)
+        public async Task<IActionResult> PutFlight(int id, Flight flight)
         {
-            if (id != country.CountryId)
+            if (id != flight.FlightId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(country).State = EntityState.Modified;
+            _context.Entry(flight).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace FinalProject.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CountryExists(id))
+                if (!FlightExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace FinalProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Countries
+        // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Country>> PostCountry(Country country)
+        public async Task<ActionResult<Flight>> PostFlight(Flight flight)
         {
-            _context.Countries.Add(country);
+            _context.Flights.Add(flight);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCountry", new { id = country.CountryId }, country);
+            return CreatedAtAction("GetFlight", new { id = flight.FlightId }, flight);
         }
 
-        // DELETE: api/Countries/5
+        // DELETE: api/Flights/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCountry(int id)
+        public async Task<IActionResult> DeleteFlight(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
-            if (country == null)
+            var flight = await _context.Flights.FindAsync(id);
+            if (flight == null)
             {
                 return NotFound();
             }
 
-            _context.Countries.Remove(country);
+            _context.Flights.Remove(flight);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CountryExists(int id)
+        private bool FlightExists(int id)
         {
-            return _context.Countries.Any(e => e.CountryId == id);
+            return _context.Flights.Any(e => e.FlightId == id);
         }
     }
 }

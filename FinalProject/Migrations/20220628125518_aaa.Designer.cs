@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220627163041_sumer")]
-    partial class sumer
+    [Migration("20220628125518_aaa")]
+    partial class aaa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,10 @@ namespace FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AirportId"), 1L, 1);
 
+                    b.Property<string>("AirportAddress")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
                     b.Property<string>("AirportCode")
                         .HasColumnType("nvarchar(450)");
 
@@ -144,6 +148,106 @@ namespace FinalProject.Migrations
                     b.ToTable("Amenities", "Master");
                 });
 
+            modelBuilder.Entity("FinalProject.MasterDataModels.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"), 1L, 1);
+
+                    b.Property<string>("CityName")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<int>("CountryRefId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CityId");
+
+                    b.HasIndex("CountryRefId");
+
+                    b.ToTable("City", "Master");
+                });
+
+            modelBuilder.Entity("FinalProject.MasterDataModels.Country", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"), 1L, 1);
+
+                    b.Property<string>("CountryCode")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(900)");
+
+                    b.Property<string>("CountryName")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("CountryShortName")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.HasKey("CountryId");
+
+                    b.HasIndex("CountryCode")
+                        .IsUnique()
+                        .HasFilter("[CountryCode] IS NOT NULL");
+
+                    b.ToTable("Country", "Master");
+                });
+
+            modelBuilder.Entity("FinalProject.MasterDataModels.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"), 1L, 1);
+
+                    b.Property<int>("CityRefId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerAddress1")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("CustomerAddress2")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<DateTime>("CustomerDateOfBirth")
+                        .IsUnicode(false)
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerEmail")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("CustomerFirstName")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("CustomerLastName")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("CustomerPinCode")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<int>("CustomerTelephone")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("CityRefId");
+
+                    b.ToTable("Customer", "Master");
+                });
+
             modelBuilder.Entity("FinalProject.MasterDataModels.Flight", b =>
                 {
                     b.Property<int>("FlightId")
@@ -151,10 +255,6 @@ namespace FinalProject.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlightId"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
 
                     b.Property<int>("AirlineRefId")
                         .HasColumnType("int");
@@ -191,8 +291,8 @@ namespace FinalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BookingTimeStamp")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("BookingTimeStamp")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("CustomerContactEmail")
                         .IsUnicode(false)
@@ -256,9 +356,6 @@ namespace FinalProject.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FlightRefId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PricePerAdult")
                         .HasColumnType("int");
 
                     b.HasKey("FlightScheduleId");
@@ -364,161 +461,83 @@ namespace FinalProject.Migrations
 
                     b.HasIndex("HotelBookingRefId");
 
-                    b.ToTable("HotelCustomerDetail", "Transaction");
-                });
-
-            modelBuilder.Entity("FinalProject.Models.City", b =>
-                {
-                    b.Property<int>("CityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"), 1L, 1);
-
-                    b.Property<string>("CityName")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<int>("CountryRefId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CityId");
-
-                    b.HasIndex("CountryRefId");
-
-                    b.ToTable("City", "Master");
-                });
-
-            modelBuilder.Entity("FinalProject.Models.Country", b =>
-                {
-                    b.Property<int>("CountryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"), 1L, 1);
-
-                    b.Property<string>("CountryCode")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(900)");
-
-                    b.Property<string>("CountryName")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<string>("CountryShortName")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.HasKey("CountryId");
-
-                    b.HasIndex("CountryCode")
-                        .IsUnique()
-                        .HasFilter("[CountryCode] IS NOT NULL");
-
-                    b.ToTable("Country", "Master");
-                });
-
-            modelBuilder.Entity("FinalProject.Models.Customer", b =>
-                {
-                    b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"), 1L, 1);
-
-                    b.Property<int>("CityRefId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CustomerAddress1")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<string>("CustomerAddress2")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<DateTime>("CustomerDateOfBirth")
-                        .IsUnicode(false)
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CustomerEmail")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<string>("CustomerFirstName")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<string>("CustomerLastName")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<string>("CustomerPinCode")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<int>("CustomerTelephone")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerId");
-
-                    b.HasIndex("CityRefId");
-
-                    b.ToTable("Customer", "Master");
+                    b.ToTable("HotelCustomerDetails");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.Airline", b =>
                 {
-                    b.HasOne("FinalProject.Models.City", "CityModel")
+                    b.HasOne("FinalProject.MasterDataModels.City", "City")
                         .WithMany()
                         .HasForeignKey("CityRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CityModel");
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.Airport", b =>
                 {
-                    b.HasOne("FinalProject.Models.City", "CityModel")
+                    b.HasOne("FinalProject.MasterDataModels.City", "City")
                         .WithMany()
                         .HasForeignKey("CityRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CityModel");
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("FinalProject.MasterDataModels.City", b =>
+                {
+                    b.HasOne("FinalProject.MasterDataModels.Country", "CountryModel")
+                        .WithMany()
+                        .HasForeignKey("CountryRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CountryModel");
+                });
+
+            modelBuilder.Entity("FinalProject.MasterDataModels.Customer", b =>
+                {
+                    b.HasOne("FinalProject.MasterDataModels.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.Flight", b =>
                 {
-                    b.HasOne("FinalProject.MasterDataModels.Airline", "AirlineModel")
+                    b.HasOne("FinalProject.MasterDataModels.Airline", "Airline")
                         .WithMany()
                         .HasForeignKey("AirlineRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinalProject.MasterDataModels.Airport", "AirportModelFrom")
+                    b.HasOne("FinalProject.MasterDataModels.Airport", "AirportFrom")
                         .WithMany()
                         .HasForeignKey("FromAirportRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinalProject.MasterDataModels.Airport", "AirportModelTo")
+                    b.HasOne("FinalProject.MasterDataModels.Airport", "AirportTo")
                         .WithMany()
                         .HasForeignKey("ToAirportRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AirlineModel");
+                    b.Navigation("Airline");
 
-                    b.Navigation("AirportModelFrom");
+                    b.Navigation("AirportFrom");
 
-                    b.Navigation("AirportModelTo");
+                    b.Navigation("AirportTo");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.FlightBooking", b =>
                 {
-                    b.HasOne("FinalProject.Models.Customer", "Customer")
+                    b.HasOne("FinalProject.MasterDataModels.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerRefId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -529,7 +548,7 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.MasterDataModels.FlightCustomerDetail", b =>
                 {
-                    b.HasOne("FinalProject.Models.Customer", "Customer")
+                    b.HasOne("FinalProject.MasterDataModels.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerRefId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -559,7 +578,7 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.MasterDataModels.Hotel", b =>
                 {
-                    b.HasOne("FinalProject.Models.City", "CityModel")
+                    b.HasOne("FinalProject.MasterDataModels.City", "CityModel")
                         .WithMany()
                         .HasForeignKey("CityRefId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -600,7 +619,7 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.MasterDataModels.HotelCustomerDetail", b =>
                 {
-                    b.HasOne("FinalProject.Models.Customer", "Customer")
+                    b.HasOne("FinalProject.MasterDataModels.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerRefId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -615,28 +634,6 @@ namespace FinalProject.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("HotelBooking");
-                });
-
-            modelBuilder.Entity("FinalProject.Models.City", b =>
-                {
-                    b.HasOne("FinalProject.Models.Country", "CountryModel")
-                        .WithMany()
-                        .HasForeignKey("CountryRefId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CountryModel");
-                });
-
-            modelBuilder.Entity("FinalProject.Models.Customer", b =>
-                {
-                    b.HasOne("FinalProject.Models.City", "CityModel")
-                        .WithMany()
-                        .HasForeignKey("CityRefId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CityModel");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.FlightBooking", b =>

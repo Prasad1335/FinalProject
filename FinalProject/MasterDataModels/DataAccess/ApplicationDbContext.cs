@@ -1,5 +1,5 @@
 ﻿
-using FinalProject.Models;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace FinalProject.MasterDataModels.DataAccess
@@ -16,10 +16,10 @@ namespace FinalProject.MasterDataModels.DataAccess
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<HotelAmenitiesLink> HotelAmenitiesLinks { get; set; }
         public DbSet<FlightSchedule> FlightSchedules { get; set; }
-              public DbSet<FlightBooking> FlightBookings { get; set; }
-                    public DbSet<FlightCustomerDetail> FlightCustomerDetails { get; set; }
-                          public DbSet<HotelBooking> HotelBookings { get; set; }    
-                          public DbSet<HotelCustomerDetail >HotelCustomerDetails { get; set; }
+        public DbSet<FlightBooking> FlightBookings { get; set; }
+        public DbSet<FlightCustomerDetail> FlightCustomerDetails { get; set; }
+        public DbSet<HotelBooking> HotelBookings { get; set; }
+        public DbSet<HotelCustomerDetail> HotelCustomerDetails { get; set; }
         public ApplicationDbContext()
         {
 

@@ -1,32 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿
 
-namespace FinalProject.MasterDataModels
+namespace FinalProject.Dtos
 {
-    [Table("Customer", Schema = "Master")]
-    public class Customer
+   
+    public class CustomerDto
     {
-        [Key]
+    
         public int CustomerId { get; set; }
-        [Unicode(false)]
+       
         public string CustomerFirstName { get; set; }
-        [Unicode(false)]
+        
         public string CustomerLastName { get; set; }
-        [Unicode(false)]
+       
         public DateTime CustomerDateOfBirth { get; set; }
-        [Unicode(false)]
+      
         public string CustomerAddress1 { get; set; }
-        [Unicode(false)]
+       
         public string CustomerAddress2 { get; set; }
         public int CityRefId { get; set; }
-        [ForeignKey(nameof(CityRefId))]
-
-        public City City { get; set; }
-        [Unicode(false)]
+       
         public string CustomerPinCode { get; set; }
         public int CustomerTelephone { get; set; }
-        [Unicode(false)]
+      
         public string CustomerEmail { get; set; }
 
 

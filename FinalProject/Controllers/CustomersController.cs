@@ -12,47 +12,47 @@ namespace FinalProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CountriesController : ControllerBase
+    public class CustomersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public CountriesController(ApplicationDbContext context)
+        public CustomersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Countries
+        // GET: api/Customers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
-            return await _context.Countries.ToListAsync();
+            return await _context.Customers.ToListAsync();
         }
 
-        // GET: api/Countries/5
+        // GET: api/Customers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetCountry(int id)
+        public async Task<ActionResult<Customer>> GetCustomer(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
+            var customer = await _context.Customers.FindAsync(id);
 
-            if (country == null)
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return country;
+            return customer;
         }
 
-        // PUT: api/Countries/5
+        // PUT: api/Customers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCountry(int id, Country country)
+        public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            if (id != country.CountryId)
+            if (id != customer.CustomerId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(country).State = EntityState.Modified;
+            _context.Entry(customer).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace FinalProject.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CountryExists(id))
+                if (!CustomerExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace FinalProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Countries
+        // POST: api/Customers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Country>> PostCountry(Country country)
+        public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
-            _context.Countries.Add(country);
+            _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCountry", new { id = country.CountryId }, country);
+            return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
         }
 
-        // DELETE: api/Countries/5
+        // DELETE: api/Customers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCountry(int id)
+        public async Task<IActionResult> DeleteCustomer(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
-            if (country == null)
+            var customer = await _context.Customers.FindAsync(id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            _context.Countries.Remove(country);
+            _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CountryExists(int id)
+        private bool CustomerExists(int id)
         {
-            return _context.Countries.Any(e => e.CountryId == id);
+            return _context.Customers.Any(e => e.CustomerId == id);
         }
     }
 }

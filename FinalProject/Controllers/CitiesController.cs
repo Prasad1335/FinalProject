@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using FinalProject.MasterDataModels;
 using FinalProject.MasterDataModels.DataAccess;
-using FinalProject.Models;
 
 namespace FinalProject.Controllers
 {

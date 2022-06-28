@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FinalProject.Models
+namespace FinalProject.MasterDataModels
 {
     [Table("Country",Schema="Master")]
 

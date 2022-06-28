@@ -1,28 +1,21 @@
 ﻿
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using FinalProject.MasterDataModels;
 
-namespace FinalProject.MasterDataModels
+namespace FinalProject.Dtos
 {
-    [Table(nameof(FlightBooking), Schema = "Transaction")]
-    public class FlightBooking
+
+    public class FlightBookingDto
     {
-        [Key]
+
         public int Id { get; set; }
-        [Unicode(false)]
+
         public string PassengerNameRecord { get; set; }
         public DateTime BookingTimeStamp { get; set; }
         public int CustomerRefId { get; set; }
-        [ForeignKey(nameof(CustomerRefId))]
-        public Customer Customer { get; set; }
         public int FlightScheduleRefId { get; set; }
         public long CustomerContactMobile { get; set; }
-        [Unicode(false)]
         public string CustomerContactEmail { get; set; }
         public List<FlightCustomerDetail> FlightCustomerDetails { get; set; }
-
     }
 }
-
 
