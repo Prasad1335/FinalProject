@@ -25,14 +25,15 @@ namespace FinalProject.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<City>>> GetCities()
         {
-            return await _context.Cities.ToListAsync();
+            return await _context.Cities.Include("CountryModel").ToListAsync();
         }
 
         // GET: api/Cities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<City>> GetCity(int id)
         {
-            var city = await _context.Cities.FindAsync(id);
+
+            var city = await _context.Cities.Include("CountryModel").SingleOrDefaultAsync(x => x.CityId == id);
 
             if (city == null)
             {
