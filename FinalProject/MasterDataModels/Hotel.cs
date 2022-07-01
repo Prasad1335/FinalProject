@@ -16,6 +16,6 @@ namespace FinalProject.MasterDataModels
         public int CityRefId { get; set; }
 
         [ForeignKey(nameof(CityRefId))]
-        public City CityModel { get; set; }
+        public City City { get; set; }
     }
 }

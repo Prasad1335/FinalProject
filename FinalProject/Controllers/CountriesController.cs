@@ -25,7 +25,7 @@ namespace FinalProject.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
         {
-            return await _context.Countries.Include("CountryModel").ToListAsync();
+            return await _context.Countries.ToListAsync();
         }
 
         // GET: api/Countries/5

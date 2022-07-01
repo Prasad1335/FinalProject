@@ -12,7 +12,7 @@ namespace FinalProject.MasterDataModels
         public int HotelAmenitiesLinkId { get; set; }
         public int HotelRefId { get; set; }
         [ForeignKey(nameof(HotelRefId))]
-        public Hotel HotelModel { get; set; }
+        public Hotel Hotel { get; set; }
 
         public int AmenitiesRefId { get; set; }
         [ForeignKey(nameof(AmenitiesRefId))]

@@ -25,14 +25,14 @@ namespace FinalProject.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelAmenitiesLink>>> GetHotelAmenitiesLinks()
         {
-            return await _context.HotelAmenitiesLinks.ToListAsync();
+            return await _context.HotelAmenitiesLinks.Include("Hotel").Include("Amenities").ToListAsync();
         }
 
         // GET: api/HotelAmenitiesLinks/5
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelAmenitiesLink>> GetHotelAmenitiesLink(int id)
         {
-            var hotelAmenitiesLink = await _context.HotelAmenitiesLinks.FindAsync(id);
+            var hotelAmenitiesLink = await _context.HotelAmenitiesLinks.Include("Hotel").Include("Amenities").SingleOrDefaultAsync(x => x.HotelAmenitiesLinkId == id);
 
             if (hotelAmenitiesLink == null)
             {
@@ -70,7 +70,7 @@ namespace FinalProject.Controllers
                 }
             }
 
-            return NoContent();
+            return CreatedAtAction("GetHotelAmenitiesLink", new { id = hotelAmenitiesLink.HotelAmenitiesLinkId }, hotelAmenitiesLink);
         }
 
         // POST: api/HotelAmenitiesLinks

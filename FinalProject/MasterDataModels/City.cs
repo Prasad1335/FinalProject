@@ -13,6 +13,6 @@ namespace FinalProject.MasterDataModels
         public string CityName { get; set; }
         public int CountryRefId { get; set; }
         [ForeignKey(nameof(CountryRefId))]
-        public Country CountryModel { get; set; }
+        public Country Country { get; set; }
     }
 }

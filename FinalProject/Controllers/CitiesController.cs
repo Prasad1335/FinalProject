@@ -25,7 +25,7 @@ namespace FinalProject.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<City>>> GetCities()
         {
-            return await _context.Cities.Include("CountryModel").ToListAsync();
+            return await _context.Cities.Include("Country").ToListAsync();
         }
 
         // GET: api/Cities/5
@@ -33,7 +33,7 @@ namespace FinalProject.Controllers
         public async Task<ActionResult<City>> GetCity(int id)
         {
 
-            var city = await _context.Cities.Include("CountryModel").SingleOrDefaultAsync(x => x.CityId == id);
+            var city = await _context.Cities.Include("Country").SingleOrDefaultAsync(x => x.CityId == id);
 
             if (city == null)
             {
