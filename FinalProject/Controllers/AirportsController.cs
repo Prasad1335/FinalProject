@@ -25,14 +25,14 @@ namespace FinalProject.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Airport>>> GetAirports()
         {
-            return await _context.Airports.ToListAsync();
+            return await _context.Airports.Include("City").ToListAsync();
         }
 
         // GET: api/Airports/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Airport>> GetAirport(int id)
         {
-            var airport = await _context.Airports.FindAsync(id);
+            var airport = await _context.Airports.Include("City").SingleOrDefaultAsync(x=>x.AirportId==id);
 
             if (airport == null)
             {
@@ -70,7 +70,7 @@ namespace FinalProject.Controllers
                 }
             }
 
-            return NoContent();
+            return CreatedAtAction("GetAirport", new { id = airport.AirportId }, airport);
         }
 
         // POST: api/Airports
