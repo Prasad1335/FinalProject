@@ -24,8 +24,9 @@ namespace FinalProject.MasterDataModels
 
         public City City { get; set; }
         [Unicode(false)]
+        [StringLength(6)]
         public string CustomerPinCode { get; set; }
-        public int CustomerTelephone { get; set; }
+        public long CustomerTelephone { get; set; }
         [Unicode(false)]
         public string CustomerEmail { get; set; }
 

@@ -25,14 +25,14 @@ namespace FinalProject.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Airline>>> GetAirlines()
         {
-            return await _context.Airlines.ToListAsync();
+            return await _context.Airlines.Include("City").ToListAsync();
         }
 
         // GET: api/Airlines/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Airline>> GetAirline(int id)
         {
-            var airline = await _context.Airlines.FindAsync(id);
+            var airline = await _context.Airlines.Include("City").SingleOrDefaultAsync(x=>x.AirlineId==id);
 
             if (airline == null)
             {

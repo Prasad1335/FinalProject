@@ -17,10 +17,10 @@ namespace FinalProject.MasterDataModels
         public Airline Airline { get; set; }
         public int FromAirportRefId { get; set; }
         [ForeignKey(nameof(FromAirportRefId))]
-        public Airport AirportFrom { get; set; }
+        public City FromAirport { get; set; }
         public int ToAirportRefId { get; set; }
         [ForeignKey(nameof(ToAirportRefId))]
-        public Airport AirportTo { get; set; }
+        public City ToAirport { get; set; }
     }
 }
 

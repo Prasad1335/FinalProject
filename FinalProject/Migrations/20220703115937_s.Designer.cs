@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220628125518_aaa")]
-    partial class aaa
+    [Migration("20220703115937_s")]
+    partial class s
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -488,13 +488,13 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.MasterDataModels.City", b =>
                 {
-                    b.HasOne("FinalProject.MasterDataModels.Country", "CountryModel")
+                    b.HasOne("FinalProject.MasterDataModels.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CountryModel");
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.Customer", b =>
@@ -578,13 +578,13 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.MasterDataModels.Hotel", b =>
                 {
-                    b.HasOne("FinalProject.MasterDataModels.City", "CityModel")
+                    b.HasOne("FinalProject.MasterDataModels.City", "City")
                         .WithMany()
                         .HasForeignKey("CityRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CityModel");
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.HotelAmenitiesLink", b =>
@@ -595,7 +595,7 @@ namespace FinalProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinalProject.MasterDataModels.Hotel", "HotelModel")
+                    b.HasOne("FinalProject.MasterDataModels.Hotel", "Hotel")
                         .WithMany()
                         .HasForeignKey("HotelRefId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -603,7 +603,7 @@ namespace FinalProject.Migrations
 
                     b.Navigation("Amenities");
 
-                    b.Navigation("HotelModel");
+                    b.Navigation("Hotel");
                 });
 
             modelBuilder.Entity("FinalProject.MasterDataModels.HotelBooking", b =>
