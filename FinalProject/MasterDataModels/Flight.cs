@@ -21,6 +21,18 @@ namespace FinalProject.MasterDataModels
         public int ToAirportRefId { get; set; }
         [ForeignKey(nameof(ToAirportRefId))]
         public City ToAirport { get; set; }
+
+        //public int FlightScheduleId { get; set; }
+        //[ForeignKey(nameof(FlightScheduleId))]
+        //public FlightSchedule Departure { get; set; }
+
+        //public int FlightScheduleIdArrival { get; set; }
+        //[ForeignKey(nameof(FlightScheduleId))]
+        //public FlightSchedule Arrival { get; set; }
+
     }
 }
+
+
+
 

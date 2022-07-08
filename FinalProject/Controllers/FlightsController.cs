@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FinalProject.MasterDataModels;
 using FinalProject.MasterDataModels.DataAccess;
+using FinalProject.Dtos;
+using AutoMapper;
 
 namespace FinalProject.Controllers
 {
@@ -16,9 +18,12 @@ namespace FinalProject.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+       // private readonly IMapper _mapper;
+
         public FlightsController(ApplicationDbContext context)
         {
             _context = context;
+           // _mapper = mapper;
         }
 
         // GET: api/Flights
@@ -41,6 +46,7 @@ namespace FinalProject.Controllers
 
             return flight;
         }
+
 
         // PUT: api/Flights/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
