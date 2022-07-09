@@ -3,7 +3,7 @@ using FinalProject.Dtos;
 using FinalProject.MasterDataModels;
 
 
-public class AutoMapperProfile : Profile
+public class AutoMapperProfile:Profile
 {
     public AutoMapperProfile()
     {
